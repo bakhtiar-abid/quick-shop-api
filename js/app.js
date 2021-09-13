@@ -32,9 +32,13 @@ const showProducts = (products) => {
                         <i class="fas fa-star empty"></i></div> 
                         <div>
                         <small> ${product.rating.rate} out of 5 </small>
+                         
                         </div>
+                       
+
+                        </div>
+                        <div class="my-2"><small>${product.rating.count} global ratings</small></div>
                         
-                        </div>
       <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn btn-info my-4">add to cart</button>
       <button id="details-btn" class="btn btn-outline-danger">Details</button></div>
 
