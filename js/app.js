@@ -4,7 +4,7 @@ const loadProducts = () => {
       .then((response) => response.json())
       .then((data) => showProducts(data));
 };
-loadProducts();
+
 // https://fakestoreapi.com/products
 
 // show all product in UI
@@ -41,7 +41,7 @@ const showProducts = (products) => {
                         <div class="my-2"><small>${product.rating.count} global ratings</small></div>
                         
       <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn btn-info my-4">add to cart</button>
-      <button id="details-btn" class="btn btn-outline-danger">Details</button></div>
+      <button id="details-btn" onclick="productInfo('${product.id}')" class="btn btn-outline-danger">Details</button></div>
 
       
       `;
@@ -105,3 +105,16 @@ const updateTotal = () => {
    document.getElementById("total").innerText =
       parseFloat(grandTotal).toFixed(2);
 };
+
+// load product info
+const productInfo = async (id) => {
+   const url = `https://fakestoreapi.com/products/${id}`;
+   const res = await fetch(url);
+   const data = await res.json();
+   displayProductInfo(data);
+};
+//display product info
+
+const displayProductInfo = (info) => {};
+
+loadProducts();
