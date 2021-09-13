@@ -6,11 +6,12 @@ const loadProducts = () => {
 };
 
 // https://fakestoreapi.com/products
-
+const div = document.createElement("div");
 // show all product in UI
 const showProducts = (products) => {
    //  console.log(products);
    const allProducts = products.map((product) => product);
+   console.log(allProducts);
    for (const product of allProducts) {
       console.log(product);
       const image = product.image;
@@ -26,7 +27,7 @@ const showProducts = (products) => {
       <p class="course-info" >Category: ${product.category}</p>
             <div class="product-info">   
             <div>
-            <i class="fas fa-star filled"></i>
+                        <i class="fas fa-star filled"></i>
                         <i class="fas fa-star filled"></i>
                         <i class="fas fa-star filled"></i>
                         <i class="fas fa-star filled"></i>
@@ -41,9 +42,10 @@ const showProducts = (products) => {
                         <div class="my-2"><small>${product.rating.count} global ratings</small></div>
                         
       <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn btn-info my-4">add to cart</button>
-      <button id="details-btn" onclick="productInfo('${product.id}')" class="btn btn-outline-danger">Details</button></div>
-
+      <button type="button" onclick= "productInfo('${product.id}')" id="details-btn" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#detail-product">Details</button>
+      </div>
       
+
       `;
       document.getElementById("all-products").appendChild(div);
    }
@@ -108,13 +110,40 @@ const updateTotal = () => {
 
 // load product info
 const productInfo = async (id) => {
-   const url = `https://fakestoreapi.com/products/${id}`;
-   const res = await fetch(url);
-   const data = await res.json();
-   displayProductInfo(data);
+   if (id !== null) {
+      const url = `https://fakestoreapi.com/products/${id}`;
+      const res = await fetch(url);
+      const data = await res.json();
+      displayProductInfo(data);
+   }
 };
-//display product info
 
-const displayProductInfo = (info) => {};
+//display product info
+const productDetailContainer = document.getElementById("product-info");
+const displayProductInfo = (info) => {
+   console.log(info);
+   const div = document.createElement("div");
+   div.classList.add("text-center");
+   div.innerHTML = `
+      <div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="${info.image}" class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">${info.title}</h5>
+        <h2 class="card-text">Price: ${info.price}</h2>
+       <p class="course-info" >Category: ${info.category}</p>
+       <p> <h5>Description:</h5>  ${info.description}</p>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+`;
+   productDetailContainer.appendChild(div);
+};
 
 loadProducts();
