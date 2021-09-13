@@ -35,19 +35,34 @@ body {
    align-items: center;
    justify-content: center;
 }
+/* .product {
+   border: 1px solid black;
+   margin: 25px;
+} */
 .single-product {
    padding: 10px;
    transition: 0.6s;
+   overflow: hidden;
+   transition: transform 0.6s ease-in-out;
+   background-color: #fff1f1;
+}
+.product {
+   box-shadow: 10px 10px 20px grey;
+   border-radius: 25px;
+   margin: 10px;
+   padding: 30px;
 }
 .single-product:hover {
    box-shadow: 4px 4px 7px gray;
    border-radius: 10px;
    border: 1px solid cyan;
+   transform: scale(1.1);
 }
 .product-image {
    width: 150px;
    height: 150px;
 }
+
 .cart {
    width: 350px;
    /* border: 1px solid green; */
