@@ -1,6 +1,5 @@
 const loadProducts = () => {
-   const url = `https://fakestoreapi.com/products`;
-   fetch(url)
+   fetch("../js/shop.json")
       .then((response) => response.json())
       .then((data) => showProducts(data));
 };
@@ -22,10 +21,22 @@ const showProducts = (products) => {
     <img class="product-image" src=${image}></img>
       </div>
       <h5 class="my-5">${product.title}</h5>
-      <p>Category: ${product.category}</p>
-      <h2>Price: $ ${product.price}</h2>
-      <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn btn-info">add to cart</button>
-      <button id="details-btn" class="btn btn-danger">Details</button></div>
+      <h3>Price: $ ${product.price}</h3>
+      <p class="course-info" >Category: ${product.category}</p>
+            <div class="product-info">   
+            <div>
+            <i class="fas fa-star filled"></i>
+                        <i class="fas fa-star filled"></i>
+                        <i class="fas fa-star filled"></i>
+                        <i class="fas fa-star filled"></i>
+                        <i class="fas fa-star empty"></i></div> 
+                        <div>
+                        <small> ${product.rating.rate} out of 5 </small>
+                        </div>
+                        
+                        </div>
+      <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn btn-info my-4">add to cart</button>
+      <button id="details-btn" class="btn btn-outline-danger">Details</button></div>
 
       
       `;
@@ -77,6 +88,9 @@ const updateTaxAndCharge = () => {
       setInnerText("total-tax", priceConverted * 0.4);
    }
 };
+
+// showing shipping information
+const shippingInfo = () => {};
 
 //grandTotal update function
 const updateTotal = () => {
