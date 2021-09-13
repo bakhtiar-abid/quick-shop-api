@@ -1,7 +1,13 @@
+:root {
+   --white-color: #ffffff;
+}
+/* Body Info */
 body {
    overflow-x: hidden;
    font-family: "Montserrat", sans-serif;
 }
+/* Search Field Style */
+
 .search-field {
    border: none;
    border-radius: 50px;
@@ -25,6 +31,7 @@ body {
    border-radius: 25px;
    margin-left: 20px;
 }
+/* All Products Style */
 #all-products {
    display: grid;
    grid-template-columns: repeat(3, 1fr);
@@ -41,10 +48,11 @@ body {
    padding: 10px;
    transition: 0.6s;
    transition: transform 0.5s ease-in-out;
-   background-color: #f9f9f9;
+   background-color: var(--white-color);
    border-radius: 20px;
 }
 .product {
+   background-color: var(--white-color);
    box-shadow: 10px 10px 20px grey;
    border-radius: 25px;
    margin: 10px;
@@ -56,17 +64,6 @@ body {
    justify-content: space-around;
 }
 
-.fa-star {
-   font-size: 12px;
-}
-
-.fa-star.filled {
-   color: #ffc014;
-}
-
-.fa-star.empty {
-   color: #aeaeae;
-}
 .single-product:hover {
    box-shadow: 4px 4px 7px gray;
    border-radius: 10px;
@@ -78,7 +75,21 @@ body {
    height: 150px;
 }
 
+/* Adding Ratings Style */
+.fa-star {
+   font-size: 12px;
+}
+
+.fa-star.filled {
+   color: #ffc014;
+}
+
+.fa-star.empty {
+   color: #aeaeae;
+}
+/* Cart Info Style */
 .cart {
+   background-color: var(--white-color);
    width: 350px;
    /* border: 1px solid green; */
    padding: 10px;
@@ -90,6 +101,8 @@ body {
 .cart-main {
    padding-right: 30px;
 }
+/* Media Query for different screen sizes and resolutions */
+
 @media only screen and (max-width: 768px) {
    #all-products {
       display: grid;

@@ -1,3 +1,4 @@
+// Fetch API Data
 const loadProducts = () => {
    fetch("../js/shop.json")
       .then((response) => response.json())
@@ -47,8 +48,10 @@ const showProducts = (products) => {
       document.getElementById("all-products").appendChild(div);
    }
 };
+
 let count = 0;
 const addToCart = (id, price) => {
+   //Count Total Added-Products
    count = count + 1;
    updatePrice("price", price);
 
@@ -92,9 +95,6 @@ const updateTaxAndCharge = () => {
       setInnerText("total-tax", priceConverted * 0.4);
    }
 };
-
-// showing shipping information
-const shippingInfo = () => {};
 
 //grandTotal update function
 const updateTotal = () => {
