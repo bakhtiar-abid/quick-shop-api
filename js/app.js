@@ -1,6 +1,6 @@
 const controller = new AbortController();
 const { signal } = controller;
-
+const errorMessage = document.getElementById("error-message");
 // Fetch API Data
 const loadProducts = () => {
    fetch("../js/shop.json", { signal })
@@ -18,16 +18,40 @@ document.getElementById("search-btn").addEventListener("click", function () {
    fetch(url)
       .then((res) => res.json())
       .then((data) => showProducts(data));
+   errorMessage.textContent = "";
+
+   //error handling
+
+   if (inputText === "") {
+      const div = document.createElement("div");
+      div.innerHTML = `
+      <h4 class = "text-center bg-danger w-50 mx-auto p-3 text-white rounded-3" >Please Search By a Valid Input </br> <small class= "fst-italic fw-lighter fs-5" >Ex: electronics, men's clothing, women's clothing, jewelery etc. </small> </h4>
+      
+      
+      `;
+      errorMessage.appendChild(div);
+   }
+
+   controller.abort();
 
    inputField.value = "";
    document.getElementById("all-products").textContent = "";
-   controller.abort();
 });
 
 // https://fakestoreapi.com/products
 const div = document.createElement("div");
 // show all product in UI
 const showProducts = (products) => {
+   /* Error Validation */
+   if (products.length === 0) {
+      const errorMessage = document.getElementById("error-message");
+
+      errorMessage.innerHTML = `
+      <h4 class = "text-center bg-danger w-50 mx-auto p-3 text-white rounded-3" >Please Search By a Valid Input </br> <small class= "fst-italic fw-lighter fs-5" >Ex: electronics, men's clothing, women's clothing, jewelery etc. </small> </h4>
+      
+      
+      `;
+   }
    //  console.log(products);
    const allProducts = products.map((product) => product);
 
