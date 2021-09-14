@@ -1,9 +1,15 @@
+/* Abort API Call While Search For Another Porduct */
 const controller = new AbortController();
 const { signal } = controller;
+
+/* Loading Spinner & Error Message */
 const showLoading = document.getElementById("showingSpinner");
 const errorMessage = document.getElementById("error-message");
-// Fetch API Data
+
+/* Fetch API Data */
 const loadProducts = () => {
+   // https://fakestoreapi.com/products
+
    fetch("../js/shop.json", { signal })
       .then((response) => response.json())
       .then((data) => showProducts(data));
@@ -15,6 +21,7 @@ document.getElementById("search-btn").addEventListener("click", function () {
    const inputField = document.getElementById("input-field");
    const inputText = inputField.value;
 
+   /* Fetch Api Data From Product Category */
    const url = `https://fakestoreapi.com/products/category/${inputText}`;
    fetch(url)
       .then((res) => res.json())
@@ -22,8 +29,7 @@ document.getElementById("search-btn").addEventListener("click", function () {
    errorMessage.textContent = "";
    displaySpinner();
 
-   //error handling
-
+   /* Error Handeling While User gives nothing */
    if (inputText === "") {
       const div = document.createElement("div");
       div.innerHTML = `
@@ -41,11 +47,10 @@ document.getElementById("search-btn").addEventListener("click", function () {
    document.getElementById("all-products").textContent = "";
 });
 
-// https://fakestoreapi.com/products
 const div = document.createElement("div");
 // show all product in UI
 const showProducts = (products) => {
-   /* Error Validation */
+   /* Handeling Error if User gives any wrong name */
    if (products.length === 0) {
       const errorMessage = document.getElementById("error-message");
 
@@ -57,6 +62,8 @@ const showProducts = (products) => {
       showLoading.textContent = "";
    }
    //  console.log(products);
+
+   /* Adding Necessary Information For Products*/
    const allProducts = products.map((product) => product);
 
    console.log(allProducts);
@@ -109,7 +116,7 @@ const showProducts = (products) => {
 
 let count = 0;
 const addToCart = (id, price) => {
-   //Count Total Added-Products
+   /* Count Total Added-Products */
    count = count + 1;
    updatePrice("price", price);
 
@@ -118,13 +125,14 @@ const addToCart = (id, price) => {
    document.getElementById("total-Products").innerText = count;
 };
 
+/* Getting Input Value */
 const getInputValue = (id) => {
    const element = document.getElementById(id).innerText;
    const converted = parseFloat(element);
    return converted;
 };
 
-// main price update function
+/* main price update function */
 const updatePrice = (id, value) => {
    const convertedOldPrice = getInputValue(id);
    const convertPrice = parseFloat(value);
@@ -172,7 +180,7 @@ const productInfo = async (id) => {
    displayProductInfo(data);
 };
 
-//display product info
+//display product info in details
 
 const displayProductInfo = (info) => {
    const productDetailContainer = document.getElementById("product-info");
@@ -201,8 +209,6 @@ const displayProductInfo = (info) => {
    productDetailContainer.appendChild(div);
 };
 
-loadProducts();
-
 /* Display Loading Spinner */
 const displaySpinner = () => {
    showLoading.innerHTML = `
@@ -213,3 +219,5 @@ const displaySpinner = () => {
    `;
    errorMessage.textContent = "";
 };
+
+loadProducts();
