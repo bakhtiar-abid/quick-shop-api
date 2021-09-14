@@ -27,7 +27,7 @@ document.getElementById("search-btn").addEventListener("click", function () {
    if (inputText === "") {
       const div = document.createElement("div");
       div.innerHTML = `
-      <h4 class = "text-center bg-danger w-50 mx-auto p-3 text-white rounded-3" >Please Search By a Valid Category </br> <small class= "fst-italic fw-lighter fs-5" >Ex: electronics, men's clothing, women's clothing, jewelery etc. </small> </h4>
+      <h4 class = "text-center bg-danger w-50 mx-auto p-3 text-white rounded-3" >Please Search By a Valid Category Name </br> <small class= "fst-italic fw-lighter fs-5" >Ex: electronics, men's clothing, women's clothing, jewelery etc. </small> </h4>
       
       
       `;
