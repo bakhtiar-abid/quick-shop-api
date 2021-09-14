@@ -1,5 +1,6 @@
 const controller = new AbortController();
 const { signal } = controller;
+const showLoading = document.getElementById("showingSpinner");
 const errorMessage = document.getElementById("error-message");
 // Fetch API Data
 const loadProducts = () => {
@@ -19,17 +20,19 @@ document.getElementById("search-btn").addEventListener("click", function () {
       .then((res) => res.json())
       .then((data) => showProducts(data));
    errorMessage.textContent = "";
+   displaySpinner();
 
    //error handling
 
    if (inputText === "") {
       const div = document.createElement("div");
       div.innerHTML = `
-      <h4 class = "text-center bg-danger w-50 mx-auto p-3 text-white rounded-3" >Please Search By a Valid Input </br> <small class= "fst-italic fw-lighter fs-5" >Ex: electronics, men's clothing, women's clothing, jewelery etc. </small> </h4>
+      <h4 class = "text-center bg-danger w-50 mx-auto p-3 text-white rounded-3" >Please Search By a Valid Category </br> <small class= "fst-italic fw-lighter fs-5" >Ex: electronics, men's clothing, women's clothing, jewelery etc. </small> </h4>
       
       
       `;
       errorMessage.appendChild(div);
+      showLoading.textContent = "";
    }
 
    controller.abort();
@@ -51,12 +54,14 @@ const showProducts = (products) => {
       
       
       `;
+      showLoading.textContent = "";
    }
    //  console.log(products);
    const allProducts = products.map((product) => product);
 
    console.log(allProducts);
    for (const product of allProducts) {
+      showLoading.textContent = "";
       const image = product.image;
       const div = document.createElement("div");
       div.classList.add("product");
@@ -197,3 +202,14 @@ const displayProductInfo = (info) => {
 };
 
 loadProducts();
+
+/* Display Loading Spinner */
+const displaySpinner = () => {
+   showLoading.innerHTML = `
+   <div class="spinner-border" role="status">
+    <span class="visually-hidden">Loading...</span>
+   </div>
+   
+   `;
+   errorMessage.textContent = "";
+};
