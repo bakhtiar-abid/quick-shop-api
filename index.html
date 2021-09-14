@@ -4,7 +4,7 @@
       <meta charset="UTF-8" />
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Quick Shope</title>
+      <title>Quick Shop</title>
       <link rel="stylesheet" href="./css/style.css" />
       <!-- font awesome -->
       <script src="https://kit.fontawesome.com/cf425fd3a3.js" crossorigin="anonymous"></script>
@@ -25,46 +25,48 @@
    </head>
 
    <body style="background-color: #eaeded">
-      <header>
-         <nav class="navbar navbar-expand-lg navbar-light bg-secondary fixed-top">
+      <header >
+         <nav class="navbar navbar-expand-lg navbar-light bg-black fixed-top" >
   <div class="container">
-    <a class="navbar-brand text-white" href="#"><img width="100px" src="logo/logo.png" alt=""></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+     <div style="margin-left: 270px;" ><a class="navbar-brand " href="#"><img width="90px" src="logo/logo.png" alt=""></a></div>
+    
+    <button class="navbar-toggler" style="background-color: white;"  type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon "></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+    <div class="collapse navbar-collapse"  id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto container ms-5">
         <li class="nav-item">
-          <a class="nav-link active text-white" aria-current="page" href="#">Home</a>
+          <a class="nav-link active text-white me-5 " aria-current="page" href="#">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="#">Link</a>
+          <a class="nav-link text-white me-5" href="#">Today's Deals</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
+          <a class="nav-link dropdown-toggle text-white me-5" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Categories
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li><a class="dropdown-item" href="#">Electronics</a></li>
+            <li><a class="dropdown-item" href="#">Men's clothing</a></li>
+            <li> <a class="dropdown-item" href="#">Women's clothing</a></li>
+            <li><a class="dropdown-item" href="#">Jewelery</a></li>
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled text-white" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+          <a class="nav-link text-white me-5" href="#" tabindex="-1" aria-disabled="true">Sell</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white me-5" href="#" tabindex="-1" aria-disabled="true">Brands</a>
         </li>
       </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+     
     </div>
   </div>
 </nav>
       </header>
       <main class="main container" style="margin-top: 180px;">
          <h1 class="text-center text-primary" >Welcome to Quick Shop Online Store</h1>
+        
      
          <div class="search-field my-5">
            <div class="search-box input-group mb-3 w-50">
@@ -89,11 +91,14 @@
                  
 
          </div>
-
+  
          <div class="row my-5">
             <div class="col-md-9 col-lg-9 col-sm-7">
+               <!-- Product Information -->
                <div id="all-products" class=""></div>
             </div>
+
+            <!-- My Cart Calculation -->
             <div class="col-md-3 col-lg-3 col-sm-5 cart-main">
                <div class="cart" id="my-cart">
                   <table class="table">
