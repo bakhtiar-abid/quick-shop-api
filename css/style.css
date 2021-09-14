@@ -24,6 +24,8 @@ body {
    border-radius: 5px;
    margin: auto;
    margin-top: 50px;
+   margin: auto;
+
    border-right: none;
 }
 .search-button {
@@ -39,7 +41,6 @@ body {
    text-align: center;
    width: 100%;
    margin: auto;
-   margin-left: 40px;
    align-items: center;
    justify-content: center;
 }
@@ -49,12 +50,12 @@ body {
    transition: 0.6s;
    transition: transform 0.5s ease-in-out;
    background-color: var(--white-color);
-   border-radius: 20px;
+   border-radius: 10px;
 }
 .product {
    background-color: var(--white-color);
    box-shadow: 10px 10px 20px grey;
-   border-radius: 25px;
+   border-radius: 10px;
    margin: 10px;
    padding: 21px;
 }
@@ -65,6 +66,7 @@ body {
 }
 
 .single-product:hover {
+   background-color: #fdfaf6;
    box-shadow: 4px 4px 7px gray;
    border-radius: 10px;
    border: 1px solid cyan;
@@ -76,7 +78,36 @@ body {
 }
 
 /* Adding Ratings Style */
-.fa-star {
+
+.stars-outer {
+   position: relative;
+   display: inline-block;
+}
+
+.stars-inner {
+   position: absolute;
+   top: 0;
+   left: 0;
+   white-space: nowrap;
+   overflow: hidden;
+   width: 0;
+}
+
+.stars-outer::before {
+   content: "\f005 \f005 \f005 \f005 \f005";
+   font-family: "Font Awesome 5 Free";
+   font-weight: 900;
+   color: #ccc;
+}
+
+.stars-inner::before {
+   content: "\f005 \f005 \f005 \f005 \f005";
+   font-family: "Font Awesome 5 Free";
+   font-weight: 900;
+   color: #f8ce0b;
+}
+
+/* .fa-star {
    font-size: 12px;
 }
 
@@ -86,7 +117,7 @@ body {
 
 .fa-star.empty {
    color: #aeaeae;
-}
+} */
 /* Cart Info Style */
 .cart {
    background-color: var(--white-color);
@@ -95,7 +126,8 @@ body {
    padding: 10px;
    box-shadow: 10px 10px 20px gray;
    border-radius: 5px;
-   margin-right: 30px;
+   margin-right: 8px;
+   right: 0;
    position: fixed;
 }
 .cart-main {

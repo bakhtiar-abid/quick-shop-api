@@ -13,25 +13,37 @@ const showProducts = (products) => {
    const allProducts = products.map((product) => product);
    console.log(allProducts);
    for (const product of allProducts) {
-      console.log(product);
+      //inital ratings
+      const ratings = product.rating.rate;
+      //total stars
+      const starsTotal = 5;
+      // Get percentage
+      const starPercentage = (ratings / starsTotal) * 100;
+      // Round to nearest 10
+      const starPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`;
+      // starOuter.style.width = starPercentageRounded;
+      console.log(starPercentageRounded);
+
+      //set width of stars-inner to percentage
+
       const image = product.image;
       const div = document.createElement("div");
       div.classList.add("product");
-      div.style.width = "18rem";
+
       div.innerHTML = `<div class="single-product">
       <div>
     <img class="product-image" src=${image}></img>
       </div>
-      <h5 class="my-5">${product.title}</h5>
+      <h5 class="my-5">${product.title.slice(0, 29)}</h5>
       <h3>Price: $ ${product.price}</h3>
       <p class="course-info" >Category: ${product.category}</p>
             <div class="product-info">   
-            <div>
-                        <i class="fas fa-star filled"></i>
-                        <i class="fas fa-star filled"></i>
-                        <i class="fas fa-star filled"></i>
-                        <i class="fas fa-star filled"></i>
-                        <i class="fas fa-star empty"></i></div> 
+                        <div id="star-outer" class= "stars-outer">
+                         <div id="star-inner" class="stars-inner">
+                         
+                           
+                         </div>
+                         </div> 
                         <div>
                         <small> ${product.rating.rate} out of 5 </small>
                          
@@ -39,14 +51,21 @@ const showProducts = (products) => {
                        
 
                         </div>
-                        <div class="my-2"><small>${product.rating.count} global ratings</small></div>
+                        <div class="my-2"><small>${
+                           product.rating.count
+                        } global ratings</small></div>
                         
-      <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn btn-info my-4">add to cart</button>
-      <button type="button" onclick= "productInfo('${product.id}')" id="details-btn" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#detail-product">Details</button>
+      <button onclick="addToCart(${product.id},${
+         product.price
+      })" id="addToCart-btn" class="buy-now btn btn btn-info my-2">add to cart</button>
+      <button type="button" onclick= "productInfo('${
+         product.id
+      }')" id="details-btn" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#detail-product">Details</button>
       </div>
       
 
       `;
+
       document.getElementById("all-products").appendChild(div);
    }
 };
@@ -110,18 +129,17 @@ const updateTotal = () => {
 
 // load product info
 const productInfo = async (id) => {
-   if (id !== null) {
-      const url = `https://fakestoreapi.com/products/${id}`;
-      const res = await fetch(url);
-      const data = await res.json();
-      displayProductInfo(data);
-   }
+   const url = `https://fakestoreapi.com/products/${id}`;
+   const res = await fetch(url);
+   const data = await res.json();
+   displayProductInfo(data);
 };
 
 //display product info
-const productDetailContainer = document.getElementById("product-info");
+
 const displayProductInfo = (info) => {
-   console.log(info);
+   const productDetailContainer = document.getElementById("product-info");
+   productDetailContainer.textContent = "";
    const div = document.createElement("div");
    div.classList.add("text-center");
    div.innerHTML = `
@@ -133,7 +151,7 @@ const displayProductInfo = (info) => {
     <div class="col-md-8">
       <div class="card-body">
         <h5 class="card-title">${info.title}</h5>
-        <h2 class="card-text">Price: ${info.price}</h2>
+        <h2 class="card-text">Price: $ ${info.price}</h2>
        <p class="course-info" >Category: ${info.category}</p>
        <p> <h5>Description:</h5>  ${info.description}</p>
         
@@ -147,3 +165,11 @@ const displayProductInfo = (info) => {
 };
 
 loadProducts();
+
+{
+   /* <i class="fas fa-star filled"></i>
+                        <i class="fas fa-star filled"></i>
+                        <i class="fas fa-star filled"></i>
+                        <i class="fas fa-star filled"></i>
+                        <i class="fas fa-star empty"></i> */
+}
