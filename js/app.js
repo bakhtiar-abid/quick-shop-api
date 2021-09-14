@@ -11,21 +11,9 @@ const div = document.createElement("div");
 const showProducts = (products) => {
    //  console.log(products);
    const allProducts = products.map((product) => product);
+
    console.log(allProducts);
    for (const product of allProducts) {
-      //inital ratings
-      const ratings = product.rating.rate;
-      //total stars
-      const starsTotal = 5;
-      // Get percentage
-      const starPercentage = (ratings / starsTotal) * 100;
-      // Round to nearest 10
-      const starPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`;
-      // starOuter.style.width = starPercentageRounded;
-      console.log(starPercentageRounded);
-
-      //set width of stars-inner to percentage
-
       const image = product.image;
       const div = document.createElement("div");
       div.classList.add("product");
@@ -37,18 +25,19 @@ const showProducts = (products) => {
       <h5 class="my-5">${product.title.slice(0, 29)}</h5>
       <h3>Price: $ ${product.price}</h3>
       <p class="course-info" >Category: ${product.category}</p>
-            <div class="product-info">   
-                        <div id="star-outer" class= "stars-outer">
-                         <div id="star-inner" class="stars-inner">
-                         
-                           
+            <div id="star-info" class="product-info">   
+                         <div>
+                         <i class="fas fa-star filled"></i>
+                        <i class="fas fa-star filled"></i>
+                        <i class="fas fa-star filled"></i>
+                        <i class="fas fa-star filled"></i>
+                        <i class="fas fa-star empty"></i>
                          </div>
-                         </div> 
                         <div>
                         <small> ${product.rating.rate} out of 5 </small>
                          
                         </div>
-                       
+
 
                         </div>
                         <div class="my-2"><small>${
@@ -92,12 +81,12 @@ const updatePrice = (id, value) => {
    const convertedOldPrice = getInputValue(id);
    const convertPrice = parseFloat(value);
    const total = convertedOldPrice + convertPrice;
-   document.getElementById(id).innerText = parseFloat(total).toFixed(2);
+   document.getElementById(id).innerText = total.toFixed(2);
 };
 
 // set innerText function
 const setInnerText = (id, value) => {
-   document.getElementById(id).innerText = Math.round(value);
+   document.getElementById(id).innerText = value.toFixed(2);
 };
 
 // update delivery charge and total Tax
@@ -165,11 +154,3 @@ const displayProductInfo = (info) => {
 };
 
 loadProducts();
-
-{
-   /* <i class="fas fa-star filled"></i>
-                        <i class="fas fa-star filled"></i>
-                        <i class="fas fa-star filled"></i>
-                        <i class="fas fa-star filled"></i>
-                        <i class="fas fa-star empty"></i> */
-}
