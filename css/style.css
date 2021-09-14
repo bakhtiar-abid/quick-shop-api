@@ -106,6 +106,17 @@ body {
 .cart-main {
    padding-right: 30px;
 }
+
+/* Footer Style */
+.footer-info > ul > li {
+   list-style: none;
+}
+.footer-info > ul > li > a {
+   text-decoration: none;
+   color: var(--white-color);
+   font-size: smaller;
+}
+
 /* Media Query for different screen sizes and resolutions */
 
 @media only screen and (max-width: 688px) {

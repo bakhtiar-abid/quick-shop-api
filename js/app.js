@@ -1,9 +1,28 @@
+const controller = new AbortController();
+const { signal } = controller;
+
 // Fetch API Data
 const loadProducts = () => {
-   fetch("../js/shop.json")
+   fetch("../js/shop.json", { signal })
       .then((response) => response.json())
       .then((data) => showProducts(data));
 };
+
+/* Search By Product Category */
+
+document.getElementById("search-btn").addEventListener("click", function () {
+   const inputField = document.getElementById("input-field");
+   const inputText = inputField.value;
+
+   const url = `https://fakestoreapi.com/products/category/${inputText}`;
+   fetch(url)
+      .then((res) => res.json())
+      .then((data) => showProducts(data));
+
+   inputField.value = "";
+   document.getElementById("all-products").textContent = "";
+   controller.abort();
+});
 
 // https://fakestoreapi.com/products
 const div = document.createElement("div");
@@ -18,7 +37,7 @@ const showProducts = (products) => {
       const div = document.createElement("div");
       div.classList.add("product");
 
-      div.innerHTML = `<div class="single-product">
+      div.innerHTML = `<div id="hide-info" class="single-product">
       <div>
     <img class="product-image" src=${image}></img>
       </div>
